@@ -12,7 +12,8 @@
         "docker-only": "docker build -t testinguser99/message-app ."
     },
     "dependencies": {
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "winston": "^3.1.0"
     },
     "devDependencies": {}
 }
