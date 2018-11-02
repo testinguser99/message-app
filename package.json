@@ -3,9 +3,13 @@
     "version": "1.0.0",
     "description": "testing message-app",
     "author": "First Name <first.last@example.com>",
-    "main": "app.js",
+    "main": "server.js",
     "scripts": {
-        "start": "node app.js"
+        "start": "node src/server.js",
+        "lint": "echo linting...",
+        "build": "npm run lint && npm test",
+        "test": "echo testing...",
+        "docker-only": "docker build -t testinguser99/message-app ."
     },
     "dependencies": {
         "express": "^4.16.4"
