@@ -3,11 +3,12 @@
     "version": "1.0.0",
     "description": "testing message-app",
     "author": "First Name <first.last@example.com>",
-    "main": "server.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node app.js"
     },
     "dependencies": {
         "express": "^4.16.4"
-    }
+    },
+    "devDependencies": {}
 }
