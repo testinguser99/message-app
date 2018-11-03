@@ -13,4 +13,6 @@ app.use('/messages', messages);
 app.use('/health', health);
 const port = 3000;
 
-app.listen(port, () => logger.info(`Example app listening on port ${port}`));
+app.listen(port, () => {
+    logger.info(`Example app listening on port ${port}`); 
+});
