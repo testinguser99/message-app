@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // Load messages routes
-const messages = require('./services/messages');
+const messages = require('./services/message');
 const health = require('./services/health');
 
 const logger = require('./logging/logger');
