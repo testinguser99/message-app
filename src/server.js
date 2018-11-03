@@ -3,11 +3,10 @@ const express = require('express');
 const app = express();
 
 // Load messages routes
-const messages = require('./routes/messages');
-const health = require('./routes/health');
+const messages = require('./services/messages');
+const health = require('./services/health');
 
 const logger = require('./logging/logger');
-
 
 // Register messages routes
 app.use('/messages', messages);
