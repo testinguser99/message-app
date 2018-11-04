@@ -1,16 +1,19 @@
 // Load HTTP module
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
-
-// Load messages routes
-const messages = require('./services/message');
-const health = require('./services/health');
 
 const logger = require('./logging/logger');
 
-// Register messages routes
-app.use('/messages', messages);
-app.use('/health', health);
+// Allow parsing of json format
+app.use(bodyParser.json());
+
+// Register all routes
+const routes = require('./routes');
+routes.getRoutes().forEach((route) => { 
+    app.use(route) 
+});
+
 const port = 3000;
 
 app.listen(port, () => {
