@@ -1,13 +1,13 @@
 class HealthService {
-    constructor (options = {}) {
-//      this.logger = options.logger || require('../util/defaultLogger')
-        console.log('--------> HealthService constructor....');
+    constructor (options) {
+        this.logger = options.logger;
     }
   
     async checkHealth() {
-        console.log('--------> HealthService.checkHealth....');
+        this.logger.debug('HealthService.checkHealth - Enter');
         return new Promise((resolve, reject) => {
-            //this.logger.info(`HealthService.checkHealth()`)
+            this.logger.debug('HealthService.checkHealth - Exit');
+            
             resolve( { status: 'ok' } );
         })
     }

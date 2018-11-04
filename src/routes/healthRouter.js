@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 class HealthRouter {
-  constructor (options = {}) {
-  //  this.logger = options.logger || require('../util/defaultLogger')
+  constructor (options) {
+    this.logger = options.logger;
     this.healthService = options.healthService || new HealthService(options);
   }
 

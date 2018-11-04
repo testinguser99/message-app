@@ -8,9 +8,13 @@ const logger = require('./logging/logger');
 // Allow parsing of json format
 app.use(bodyParser.json());
 
+let options = {
+    logger: logger
+}
+
 // Register all routes
 const routes = require('./routes');
-routes.getRoutes().forEach((route) => { 
+routes.getRoutes(options).forEach((route) => { 
     app.use(route) 
 });
 

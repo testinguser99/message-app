@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 class MessageRouter {
-  constructor (options = {}) {
-  //  this.logger = options.logger || require('../util/defaultLogger')
+  constructor (options) {
+    this.logger = options.logger;
     this.messageService = options.messageService || new MessageService(options);
   }
 
@@ -54,8 +54,8 @@ class MessageRouter {
   }
 
   getRoutes () {
-    router.post('/messages', (req, res, next) => { this.addMessage(req, res, next); });
     router.get('/messages', (req, res, next) => { this.getMessages(req, res, next); });
+    router.post('/messages', (req, res, next) => { this.addMessage(req, res, next); });
     router.get('/messages/:id', (req, res, next) => { this.getMessageById(req, res, next); });
     router.delete('/messages/:id', (req, res, next) => { this.deleteMessageById(req, res, next); });
     return router;

@@ -2,7 +2,7 @@ const HealthRouter = require('./healthRouter');
 const MessageRouter = require('./messageRouter');
 
 module.exports = {
-    getRoutes(options = {}) {
+    getRoutes(options) {
         let routes = [];
         routes.push(new HealthRouter(options).getRoutes());
         routes.push(new MessageRouter(options).getRoutes());
