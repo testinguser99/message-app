@@ -1,4 +1,4 @@
-const Palidrone = require('../models/palidrone');
+const Palidrone = require('../models/palindrome');
 const assert = require('assert');
 const MessageNotFoundError = require('../errors/MessageNotFoundError');
 const StoreError = require('../errors/StoreError');
@@ -52,7 +52,7 @@ class MessageService {
         return new Promise((resolve, reject) => {
             this.store.getById(id).then((data) => {
                 if (data) {
-                    resolve(data);
+                    resolve(new Palindrome(data));
                 } else {
                     reject( new MessageNotFoundError());
                 }

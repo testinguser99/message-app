@@ -27,8 +27,8 @@ class MemoryStoreService {
         return new Promise((resolve, reject) => {
 
             this.logger.debug('MemoryStoreService.getById - Exit {:id => ' + id + '}');
-            reject('toto');
-            //resolve(this.store[id]);
+            //reject('toto');
+            resolve(this.store[id]);
         });
     }
 
