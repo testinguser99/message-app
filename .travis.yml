@@ -14,7 +14,7 @@ services:
 
 script:
   - "npm run build"
-  - "docker build -t testinguser99/message-app ."
+  - "docker build -t development99/development ."
 
 after_script:
   - docker images
@@ -24,7 +24,7 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: "docker push testinguser99/message-app"
+    script: "docker push development99/development"
     on:
       branch: master
 
