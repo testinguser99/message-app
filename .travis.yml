@@ -24,7 +24,7 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: docker push testinguser99/message-app
+    script: "docker push testinguser99/message-app"
     on:
       branch: master
 
