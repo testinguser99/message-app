@@ -1,5 +1,7 @@
 const assert = require('assert');
 
+// class the represents a message.
+
 class Message {
     constructor (id, text) {
         assert(id && text);
