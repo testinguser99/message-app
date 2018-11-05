@@ -19,7 +19,7 @@ script:
 after_script:
   - docker images
 
-  before_deploy:
+before_deploy:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 
 deploy:
