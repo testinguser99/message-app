@@ -2,6 +2,10 @@ language: node_js
 
 sudo: required
 
+env:
+  global:
+    - REGISTRY_USER=testinguser99
+
 node_js:
   - "8.12"
 
@@ -11,6 +15,14 @@ services:
 script:
   - "npm run build"
    - "docker build -t testinguser99/message-app ."
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+ deploy:
+  provider: script
+  script: docker push testinguser99/message-app
+  on:
+    branch: master
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
