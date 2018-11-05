@@ -1,12 +1,4 @@
-// function Palidrone(message) {
-//     this.id = message.id;
-//     this.text = message.text;
-//     this.palidrone = this.isPalidrone();
-// }
 
-// Palidrone.prototype.isPalidrone = function isPalidrone() {
-//     return this.text === 'baseball';
-// };
 const Message = require('./Message');
 class Palidrone extends Message {
     constructor (message) {

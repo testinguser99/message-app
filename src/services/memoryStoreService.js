@@ -49,11 +49,14 @@ class MemoryStoreService {
         this.logger.debug('MemoryStoreService.deleteById - Enter {:id => ' + id + '}');
        
         return new Promise((resolve, reject) => {
-            delete this.store[id];
+            if (this.store[id]) {
+                delete this.store[id];
+                resolve(id);
+            }
             
             this.logger.debug('MemoryStoreService.deleteById - Exit {:id => ' + id + '}');
 
-            resolve({}); 
+            resolve(); 
         });
     }
     

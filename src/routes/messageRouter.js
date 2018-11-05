@@ -15,42 +15,32 @@ class MessageRouter {
   }
 
   async addMessage(req, res, next) {
-    res.type('application/json');
-
-    let message = req.body;
-    this.messageService.addMessage(message).then((data) => {
+    try {
+      let data = await this.messageService.addMessage(req.body);
       res.send(data);
-    });
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getMessageById(req, res, next) {
-    res.type('application/json');
-
     let id = req.params.id;
-    if (!id) {
-        res.status(400); // Bad request - malformed
-        res.send({error: 'malformed url - missing id'});
-        return;
-    }
-
-    this.messageService.getMessage(id).then((data) => {
+    try {
+      let data = await this.messageService.getMessage(id);
       res.send(data);
-    });
+    } catch (error) {
+      next(error);
+    }
   }
   
   async deleteMessageById(req, res, next) {
-    
     let id = req.params.id;
-
-    if (!id) {
-        res.status(400); // Bad request - malformed
-        res.send({error: 'malformed url - missing id'});
-        return;
-    }
-
-    this.messageService.deleteMessage(id).then((data) => {
+    try {
+      await this.messageService.deleteMessage(id);
       res.status(204).end();
-    });
+    } catch (error) {
+      next(error);
+    }
   }
 
   getRoutes () {
