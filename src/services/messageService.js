@@ -11,7 +11,7 @@ class MessageService {
     async addMessage(message) {
         this.logger.debug('MessageService.addMessage - Enter {:message => ' + message.text + '}');
 
-        assert(message && message.text && message.text !== '', 'Invalid argument.');
+        assert(message && message.text, 'Invalid argument.');
 
         let data = await this.store.add(message.text);
       
@@ -33,7 +33,7 @@ class MessageService {
     async getMessage(id) {
         this.logger.debug('MessageService.getMessage - Enter {:id => ' + id + '}');
 
-        assert(id && id !== '', 'Invalid argument.');
+        assert(id, 'Invalid argument.');
       
         let data = await this.store.getById(id);
         if (!data) {
@@ -48,7 +48,7 @@ class MessageService {
     async deleteMessage(id) {
         this.logger.debug('MessageService.deleteMessage - Enter {:id => ' + id + '}');
 
-        assert(id && id !== '', 'Invalid argument.');
+        assert(id, 'Invalid argument.');
       
         let data = await this.store.deleteById(id);
         if (!data) {

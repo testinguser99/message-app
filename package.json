@@ -8,8 +8,22 @@
         "start": "node src/server.js",
         "lint": "echo linting...",
         "build": "npm run lint && npm test",
-        "test": "echo testing...",
+        "test": "nyc mocha './src/**/*.test.js'",
         "docker-only": "docker build -t testinguser99/message-app ."
+    },
+    "nyc": {
+        "extension": [
+            ".js"
+        ],
+        "reporter": [
+            "lcov",
+            "text",
+            "html"
+        ],
+        "exclude": [
+            "coverage"
+        ],
+        "all": true
     },
     "dependencies": {
         "express": "^4.16.4",
@@ -17,5 +31,9 @@
         "node-uuid": "1.4.8",
         "body-parser": "1.18.0"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^5.2.0",
+        "nyc": "^13.1.0"
+    }
 }
