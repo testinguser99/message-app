@@ -1,6 +1,7 @@
 const Palidrone = require('../models/palidrone');
 const assert = require('assert');
 const MessageNotFoundError = require('../errors/MessageNotFoundError');
+const StoreError = require('../errors/StoreError');
 
 class MessageService {
     constructor (options) {
@@ -43,6 +44,24 @@ class MessageService {
         this.logger.debug('MessageService.getMessage - Exit {:id => ' + id + '}');
 
         return new Palidrone(data);
+    }
+    getMessage(id) {
+        this.logger.debug(`Enter - MessageService.getMessage(:id=${id})`);
+
+        assert(id, 'Invalid argument.');
+        return new Promise((resolve, reject) => {
+            this.store.getById(id).then((data) => {
+                if (data) {
+                    resolve(data);
+                } else {
+                    reject( new MessageNotFoundError());
+                }
+            }, (error) => {
+                var errMsg = error.message || error;
+                var err = new StoreError(errMsg);
+                reject(err);
+            });
+        });
     }
 
     async deleteMessage(id) {

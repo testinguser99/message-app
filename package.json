@@ -9,7 +9,7 @@
         "lint": "echo linting...",
         "build": "npm run lint && npm test",
         "test": "nyc mocha './src/**/*.test.js'",
-        "docker-only": "docker build -t testinguser99/message-app ."
+        "docker-only": "docker build -t sivretda/message-app ."
     },
     "nyc": {
         "extension": [

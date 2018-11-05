@@ -23,14 +23,13 @@ class MessageRouter {
     }
   }
 
-  async getMessageById(req, res, next) {
+  getMessageById(req, res, next) {
     let id = req.params.id;
-    try {
-      let data = await this.messageService.getMessage(id);
+    this.messageService.getMessage(id).then((data) => {
       res.send(data);
-    } catch (error) {
+    }, (error) => {
       next(error);
-    }
+    });
   }
   
   async deleteMessageById(req, res, next) {

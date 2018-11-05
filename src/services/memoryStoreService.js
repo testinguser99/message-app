@@ -21,14 +21,14 @@ class MemoryStoreService {
         });
     }
 
-    async getById(id) {
+    getById(id) {
         this.logger.debug('MemoryStoreService.getById - Enter {:id => ' + id + '}');
        
         return new Promise((resolve, reject) => {
 
             this.logger.debug('MemoryStoreService.getById - Exit {:id => ' + id + '}');
-            
-            resolve(this.store[id]);
+            reject('toto');
+            //resolve(this.store[id]);
         });
     }
 
