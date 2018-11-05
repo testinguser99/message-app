@@ -4,7 +4,7 @@ sudo: required
 
 env:
   global:
-    - REGISTRY_USER=testinguser99
+    - REGISTRY_USER=sivretda
 
 node_js:
   - "8.12"
@@ -14,7 +14,7 @@ services:
 
 script:
   - "npm run build"
-  - "docker build -t development99/development ."
+  - "docker build -t sivretda/testing ."
 
 after_script:
   - docker images
@@ -24,7 +24,7 @@ before_deploy:
 
 deploy:
   provider: script
-  script: docker push development99/development
+  script: docker push sivretda/testing
   on:
     branch: master
 
