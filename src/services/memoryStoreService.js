@@ -7,56 +7,46 @@ class MemoryStoreService {
         this.store = {};
     }
   
-    async getAll() {
-        this.logger.debug('MemoryStoreService.getAll - Enter');
+    getAll() {
+        this.logger.debug(`MemoryStoreService.getAll()`);
+
         return new Promise((resolve, reject) => {
-        
             let data = Object.keys(this.store).map(function (key) {
                 return this.store[key];
             }.bind(this));
-
-            this.logger.debug('MemoryStoreService.getAll - Exit');
 
             resolve(data);
         });
     }
 
     getById(id) {
-        this.logger.debug('MemoryStoreService.getById - Enter {:id => ' + id + '}');
+        this.logger.debug(`MemoryStoreService.getById(:id=${id})`);
        
         return new Promise((resolve, reject) => {
-
-            this.logger.debug('MemoryStoreService.getById - Exit {:id => ' + id + '}');
-            //reject('toto');
             resolve(this.store[id]);
         });
     }
 
-    async add(text) {
-        this.logger.debug('MemoryStoreService.add - Enter {:text => ' + text + '}');
+    add(text) {
+        this.logger.debug(`MemoryStoreService.add(:text=${text})`);
         
         return new Promise((resolve, reject) => {
             var message = new Message(uuid.v4(), text);
             this.store[message.id] = message;
-
-            this.logger.debug('MemoryStoreService.add - Exit {:text => ' + text + '}');
-            
             resolve(message); 
         });
     }
 
-    async deleteById(id) {
-        this.logger.debug('MemoryStoreService.deleteById - Enter {:id => ' + id + '}');
+    deleteById(id) {
+        this.logger.debug(`MemoryStoreService.deleteById(:id=${id})`);
        
         return new Promise((resolve, reject) => {
             if (this.store[id]) {
                 delete this.store[id];
                 resolve(id);
+            } else {
+                reject(new Error(`id ${id} not found`)); 
             }
-            
-            this.logger.debug('MemoryStoreService.deleteById - Exit {:id => ' + id + '}');
-
-            resolve(); 
         });
     }
     

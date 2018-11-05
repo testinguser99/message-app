@@ -3,11 +3,9 @@ class HealthService {
         this.logger = options.logger;
     }
   
-    async checkHealth() {
-        this.logger.debug('HealthService.checkHealth - Enter');
-        return new Promise((resolve, reject) => {
-            this.logger.debug('HealthService.checkHealth - Exit');
-            
+    checkHealth() {
+        this.logger.debug(`HealthService.checkHealth()`);
+        return new Promise((resolve, reject) => { 
             resolve( { status: 'ok' } );
         })
     }

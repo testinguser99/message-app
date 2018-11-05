@@ -8,9 +8,11 @@ class HealthRouter {
     this.healthService = options.healthService || new HealthService(options);
   }
 
-  async checkHealth (req, res, next) {
+  checkHealth (req, res, next) {
     this.healthService.checkHealth().then((data) => {
       res.send(data);
+    }, (error) => {
+      next(error);
     });
   }
 

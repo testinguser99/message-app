@@ -8,19 +8,20 @@ class MessageRouter {
     this.messageService = options.messageService || new MessageService(options);
   }
 
-  async getMessages(req, res, next) {
+  getMessages(req, res, next) {
     this.messageService.getMessages().then((data) => {
       res.send(data);
+    }, (error) => {
+      next(error);
     });
   }
 
-  async addMessage(req, res, next) {
-    try {
-      let data = await this.messageService.addMessage(req.body);
+  addMessage(req, res, next) {
+    this.messageService.addMessage(req.body).then((data) => {
       res.send(data);
-    } catch (error) {
+    }, (error) => {
       next(error);
-    }
+    });
   }
 
   getMessageById(req, res, next) {
@@ -32,14 +33,13 @@ class MessageRouter {
     });
   }
   
-  async deleteMessageById(req, res, next) {
+  deleteMessageById(req, res, next) {
     let id = req.params.id;
-    try {
-      await this.messageService.deleteMessage(id);
+    this.messageService.deleteMessage(id).then((data) => {
       res.status(204).end();
-    } catch (error) {
+    }, (error) => {
       next(error);
-    }
+    })
   }
 
   getRoutes () {

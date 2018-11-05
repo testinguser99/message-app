@@ -9,46 +9,41 @@ class MessageService {
         this.store = options.store || new (require('./memoryStoreService'))(options);
     }
   
-    async addMessage(message) {
-        this.logger.debug('MessageService.addMessage - Enter {:message => ' + message.text + '}');
+    addMessage(message) {
+        this.logger.debug(`MessageService.addMessage(:message=${message.text})`);
 
         assert(message && message.text, 'Invalid argument.');
 
-        let data = await this.store.add(message.text);
-      
-       this.logger.debug('MessageService.addMessage - Exit {:message => ' + message.text + '}');
-       
-       return data;
+        return new Promise((resolve, reject) => {
+            this.store.add(message.text).then((data) => {
+                resolve(data);
+            }, (error) => {
+                var errMsg = error.message || error;
+                var err = new StoreError(errMsg);
+                reject(err);
+            });
+        });
     }
 
-    async getMessages() {
-        this.logger.debug('MessageService.getMessages - Enter');
-        
-        let data = await this.store.getAll();
-        
-        this.logger.debug('MessageService.getMessages - Exit');
-        
-        return data;
+    getMessages() {
+        this.logger.debug(`MessageService.getMessages()`);
+
+        return new Promise((resolve, reject) => {
+            this.store.getAll().then((data) => {
+                resolve(data);
+            }, (error) => {
+                var errMsg = error.message || error;
+                var err = new StoreError(errMsg);
+                reject(err);
+            });
+        });
     }
-
-    async getMessage(id) {
-        this.logger.debug('MessageService.getMessage - Enter {:id => ' + id + '}');
-
-        assert(id, 'Invalid argument.');
-      
-        let data = await this.store.getById(id);
-        if (!data) {
-            throw new MessageNotFoundError();
-        }
-
-        this.logger.debug('MessageService.getMessage - Exit {:id => ' + id + '}');
-
-        return new Palidrone(data);
-    }
+    
     getMessage(id) {
-        this.logger.debug(`Enter - MessageService.getMessage(:id=${id})`);
+        this.logger.debug(`MessageService.getMessage(:id=${id})`);
 
         assert(id, 'Invalid argument.');
+
         return new Promise((resolve, reject) => {
             this.store.getById(id).then((data) => {
                 if (data) {
@@ -64,16 +59,21 @@ class MessageService {
         });
     }
 
-    async deleteMessage(id) {
-        this.logger.debug('MessageService.deleteMessage - Enter {:id => ' + id + '}');
+    deleteMessage(id) {
+        this.logger.debug(`MessageService.deleteMessage(:id=${id})`);
 
         assert(id, 'Invalid argument.');
       
-        let data = await this.store.deleteById(id);
-        if (!data) {
-            throw new MessageNotFoundError();
-        }
-        this.logger.debug('MessageService.deleteMessage - Exit {:id => ' + id + '}');
+        this.store.deleteById(id).then((data) => {
+            if (!data) {
+                throw new MessageNotFoundError();
+            }
+        }, (error) => {
+            var errMsg = error.message || error;
+            var err = new StoreError(errMsg);
+            reject(err); 
+        });
+        
     }
   }
   
