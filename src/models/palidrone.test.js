@@ -12,6 +12,7 @@ describe('Palidrone', function () {
             assert.equal(message.id, 'id1');
             assert.equal(message.text, 'testing');
             assert.equal(message.isPalidrone, false);
+            assert.equal(message.isPalidrone, false);
         })
 
     })
