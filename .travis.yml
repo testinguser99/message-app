@@ -1,11 +1,16 @@
 language: node_js
+
 sudo: required
+
 node_js:
   - "8.12"
 
+services:
+  - docker
+
 script:
   - "npm run build"
-  - "npm run docker-only"
+   - "docker build -t testinguser99/message-app ."
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
