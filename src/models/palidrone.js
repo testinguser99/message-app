@@ -1,5 +1,5 @@
 
-const Message = require('./Message');
+const Message = require('./message');
 class Palidrone extends Message {
     constructor (message) {
         super(message.id, message.text);
