@@ -1,6 +1,6 @@
-const Palidrone = require('../models/palindrome');
+const Palindrome = require('../models/palindrome');
 const assert = require('assert');
-const MessageNotFoundError = require('../errors/MessageNotFoundError');
+const NotFoundError = require('../errors/NotFoundError');
 const StoreError = require('../errors/StoreError');
 
 class MessageService {
@@ -49,7 +49,7 @@ class MessageService {
                 if (data) {
                     resolve(new Palindrome(data));
                 } else {
-                    reject( new MessageNotFoundError());
+                    reject( new NotFoundError(`Could not find message id: ${id}`));
                 }
             }, (error) => {
                 var errMsg = error.message || error;
@@ -64,16 +64,15 @@ class MessageService {
 
         assert(id, 'Invalid argument.');
       
-        this.store.deleteById(id).then((data) => {
-            if (!data) {
-                throw new MessageNotFoundError();
-            }
-        }, (error) => {
-            var errMsg = error.message || error;
-            var err = new StoreError(errMsg);
-            reject(err); 
+        return new Promise((resolve, reject) => {
+            this.store.deleteById(id).then((data) => {
+                resolve(data);
+            }, (error) => {
+                var errMsg = error.message || error;
+                var err = new StoreError(errMsg);
+                reject(err); 
+            });
         });
-        
     }
   }
   

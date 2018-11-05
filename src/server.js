@@ -20,7 +20,7 @@ routes.getRoutes(options).forEach((route) => {
 
 // Error handling
 const { AssertionError } = require('assert');
-const MessageNotFoundError = require('./errors/MessageNotFoundError');
+const NotFoundError = require('./errors/NotFoundError');
 app.use((error, req, res, next) => {
     logger.error(error.stack);
     if (error instanceof AssertionError) {
@@ -28,9 +28,9 @@ app.use((error, req, res, next) => {
             type: 'AssertionError',
             message: error.message
         });
-    } else if (error instanceof MessageNotFoundError) {
+    } else if (error instanceof NotFoundError) {
         return res.status(404).json({
-            type: 'MessageNotFoundError',
+            type: 'NotFoundError',
             message: error.message
         });
     } else {
@@ -41,8 +41,7 @@ app.use((error, req, res, next) => {
     }
 });
 
-const port = 3000;
-
-app.listen(port, () => {
-    logger.info(`Example app listening on port ${port}`); 
+const HTTP_PORT = process.env.HTTP_PORT || 8080
+app.listen(HTTP_PORT, () => {
+    logger.info(`message-app listening on port ${HTTP_PORT}`); 
 });

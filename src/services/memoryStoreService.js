@@ -45,7 +45,7 @@ class MemoryStoreService {
                 delete this.store[id];
                 resolve(id);
             } else {
-                reject(new Error(`id ${id} not found`)); 
+                reject(new NotFoundError(`id ${id} not found`)); 
             }
         });
     }
