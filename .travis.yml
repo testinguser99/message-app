@@ -16,7 +16,10 @@ script:
   - "npm run build"
   - "docker build -t testinguser99/message-app ."
 
-before_deploy:
+after_script:
+  - docker images
+
+  before_deploy:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 
 deploy:
