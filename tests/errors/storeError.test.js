@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const StoreError = require('../../src/errors/storeError');
+const StoreError = require('../../errors/storeError');
 
 describe('StoreError', () => {
 

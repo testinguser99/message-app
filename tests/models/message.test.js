@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const Message = require('../../src/models/message');
+const Message = require('../../models/message');
 
 describe('Message', () => {
 

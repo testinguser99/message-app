@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const logger = require('../../src/logging/logger');
+const logger = require('../../logging/logger');
 
 describe('logger', () =>  {
 

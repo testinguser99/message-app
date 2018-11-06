@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const Palindrome = require('../../src/models/palindrome');
+const Palindrome = require('../../models/palindrome');
 
 describe('Palindrome', () =>  {
 

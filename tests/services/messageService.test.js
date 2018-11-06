@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const MessageService = require('../../src/services/messageService');
+const MessageService = require('../../services/messageService');
 
 describe('MessageService', () => {
 
