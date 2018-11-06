@@ -13,7 +13,7 @@ ADD package*.json ./
 RUN npm install --production
 
 # Bundle app source
-ADD src/ /usr/src/app/src/
+COPY . .
 
 # App binding port
 EXPOSE 8080
