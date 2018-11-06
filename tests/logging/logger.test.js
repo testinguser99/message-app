@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const logger = require('../../src/logging/logger');
 
-describe('logger', function () {
+describe('logger', () =>  {
 
     describe('instantiate', async () => {
 

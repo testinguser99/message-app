@@ -20,7 +20,7 @@ routes.getRoutes(options).forEach((route) => {
 
 // Error handling
 const { AssertionError } = require('assert');
-const NotFoundError = require('./errors/NotFoundError');
+const NotFoundError = require('./errors/notFoundError');
 app.use((error, req, res, next) => {
     logger.error(error.stack);
     if (error instanceof AssertionError) {

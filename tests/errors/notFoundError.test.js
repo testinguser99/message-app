@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const NotFoundError = require('../../src/errors/notFoundError');
 
-describe('NotFoundError', function () {
+describe('NotFoundError', () => {
 
     describe('constructor', async () => {
 

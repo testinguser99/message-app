@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const Message = require('../../src/models/message');
 
-describe('Message', function () {
+describe('Message', () => {
 
     describe('constructor', () => {
         it('with no arguments', () => {

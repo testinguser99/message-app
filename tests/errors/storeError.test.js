@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const StoreError = require('../../src/errors/storeError');
 
-describe('StoreError', function () {
+describe('StoreError', () => {
 
     describe('constructor', async () => {
 

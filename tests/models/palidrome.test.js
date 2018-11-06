@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const Palindrome = require('../../src/models/palindrome');
 
-describe('Palindrome', function () {
+describe('Palindrome', () =>  {
 
     describe('constructor', () => {
         it('with no arguments', () => {
