@@ -1,4 +1,4 @@
-const assert = require('assert');
+const uuid = require('node-uuid');
 const Message = require('./message');
 
 // A decorator class for a message reprensenting a palindrome.
@@ -9,15 +9,14 @@ const Message = require('./message');
 // "Was it a car or a cat I saw?" or "No 'x' in Nixon".
 class Palindrome {
     // constructor requires message to be passed in
-    constructor (message) {
-        assert(message && message.id && message.text);
-        this.id = message.id;
-        this.text = message.text;
+    constructor (options = {}) {
+        this.id = options.id || uuid.v4();
+        this.text = options.text || '';
         this.palindrome = this.isPalindrome();
     }
     
     // Punctunctuation, capitalization, and spaces are usually ignored.
-    isPalindrome() {
+    isPalindrome(value) {
         let regex = /[^A-Za-z0-9]/g;
         let str = this.text.toLowerCase().replace(regex, '');
         var len = str.length;

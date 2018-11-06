@@ -1,5 +1,4 @@
 const Message = require('../models/message');
-const uuid = require('node-uuid');
 
 class MemoryStoreService {
     constructor (options) {
@@ -31,7 +30,7 @@ class MemoryStoreService {
         this.logger.debug(`MemoryStoreService.add(:text=${text})`);
         
         return new Promise((resolve, reject) => {
-            var message = new Message(uuid.v4(), text);
+            var message = new Message({text: text});
             this.store[message.id] = message;
             resolve(message); 
         });

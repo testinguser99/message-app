@@ -1,12 +1,10 @@
-const assert = require('assert');
+const uuid = require('node-uuid');
 
 // class the represents a message.
-
 class Message {
-    constructor (id, text) {
-        assert(id && text);
-        this.id = id;
-        this.text = text;
+    constructor (options = {}) {
+        this.id = options.id || uuid.v4();
+        this.text = options.text || '';
     }
 }
 
