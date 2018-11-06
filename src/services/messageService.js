@@ -1,7 +1,7 @@
 const Palindrome = require('../models/palindrome');
 const assert = require('assert');
-const NotFoundError = require('../../errors/notFoundError');
-const StoreError = require('../errors/StoreError');
+const NotFoundError = require('../errors/notFoundError');
+const StoreError = require('../errors/storeError');
 
 class MessageService {
     constructor (options) {
