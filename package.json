@@ -8,7 +8,7 @@
         "start": "node src/server.js",
         "lint": "echo linting...",
         "build": "npm run lint && npm test",
-        "test": "mocha --recursive tests/",
+        "test": "nyc mocha --recursive tests/",
         "docker-only": "docker build -t sivretda/message-app ."
     },
     "nyc": {
