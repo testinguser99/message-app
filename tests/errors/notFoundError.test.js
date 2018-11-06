@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const NotFoundError = require('../../src/errors/notFoundError');
+const NotFoundError = require('../../errors/notFoundError');
 
 describe('NotFoundError', () => {
 

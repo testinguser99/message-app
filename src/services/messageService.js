@@ -1,6 +1,6 @@
 const Palindrome = require('../models/palindrome');
 const assert = require('assert');
-const NotFoundError = require('../errors/NotFoundError');
+const NotFoundError = require('../../errors/notFoundError');
 const StoreError = require('../errors/StoreError');
 
 class MessageService {
