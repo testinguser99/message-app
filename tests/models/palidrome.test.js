@@ -1,7 +1,5 @@
-const mocha = require('mocha');
 const assert = require('chai').assert;
 const Palindrome = require('../../src/models/palindrome');
-const Message = require('../../src/models/message');
 
 describe('Palindrome', function () {
 

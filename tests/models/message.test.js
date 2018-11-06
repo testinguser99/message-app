@@ -1,4 +1,3 @@
-const mocha = require('mocha');
 const assert = require('chai').assert;
 const Message = require('../../src/models/message');
 
